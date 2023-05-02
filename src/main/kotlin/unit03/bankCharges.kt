@@ -1,7 +1,7 @@
 package unit03
 fun main() {
     val fees: Double
-    
+
     print("Enter how many checks are written per month: ")
     val checks = readln().toIntOrNull()
 
