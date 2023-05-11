@@ -1,4 +1,5 @@
 package unit06
+
 var currentRoom = Pair(0, 0)
 
 fun userDirection(): Pair<Int, Int> {
@@ -20,11 +21,15 @@ fun userDirection(): Pair<Int, Int> {
     return Pair(ew, ns)
 }
 
+fun combinePairs(pair1: Pair<Int, Int>, pair2: Pair<Int, Int>): Pair<Int, Int> {
+    return Pair(pair1.first + pair2.first, pair1.second + pair2.second)
+}
+
 fun main() {
 
 
     while (true) {
-        val output = when (userDirection()) {
+        val output = when (combinePairs(currentRoom, userDirection())) {
             Pair(0, 1) -> {
                 println("You are in the North Hall.")
                 println("The marble floors are polished to a shine, reflecting the chandelier above.")
@@ -72,7 +77,7 @@ fun main() {
                 Pair(0, 0)
             }
         }
-        currentRoom = Pair(currentRoom.first + output.first, currentRoom.second + output.second)
+        currentRoom = combinePairs(currentRoom, output)
         println("Current room: $currentRoom")
     }
 }
