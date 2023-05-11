@@ -18,14 +18,15 @@ fun userDirection(): Pair<Int, Int> {
         'e', 'E' -> if (currentRoom.first < 2) ew += 1
         'w', 'W' -> if (currentRoom.first > -2) ew -= 1
     }
-    return Pair(ew, ns)
+    val newRoom = Pair(currentRoom.first + ew, currentRoom.second + ns)
+    return if (newRoom == currentRoom) Pair(0, 0) else Pair(ew, ns)
 }
 
 fun combinePairs(pair1: Pair<Int, Int>, pair2: Pair<Int, Int>): Pair<Int, Int> {
     return Pair(pair1.first + pair2.first, pair1.second + pair2.second)
 }
 
-fun main() {
+fun gamePlay() {
 
 
     while (true) {
@@ -81,3 +82,20 @@ fun main() {
         println("Current room: $currentRoom")
     }
 }
+
+fun main() {
+    println("Mansion Exploration")
+    println("-------------------")
+    print("play? (y,n): ")
+    val play = readln().firstOrNull()
+    if (play != null) {
+        if (play == 'y' || play == 'Y') {
+            gamePlay()
+        } else {
+            println("See you next time!")
+        }
+    } else {
+        println("See you next time!")
+    }
+}
+
